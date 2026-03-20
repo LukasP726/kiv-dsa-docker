@@ -1,0 +1,51 @@
+version: "3"
+
+vars:
+  BACKENDS: "5"
+
+tasks:
+  prepare:
+    desc: Generate docker-compose.yml and load balancer config
+    cmds:
+      - python ../tools/generate_demo3_assets.py {{.BACKENDS}} docker-compose.yml frontend/config/backend-upstream.conf
+
+  start:
+    desc: Build and start the infrastructure
+    cmds:
+      - task: prepare
+      - docker compose up -d --build
+
+  stop:
+    desc: Stop the infrastructure
+    cmds:
+      - docker compose stop
+
+  destroy:
+    desc: Dispose the infrastructure (stop + remove)
+    cmds:
+      - docker compose down -v --remove-orphans
+
+  status:
+    desc: Show status
+    cmds:
+      - docker compose ps
+
+  shell-frontend:
+    desc: Open shell in frontend-lb
+    cmds:
+      - docker compose exec frontend-lb bash
+
+  shell-backend-1:
+    desc: Open shell in backend-1
+    cmds:
+      - docker compose exec backend-1 bash
+
+  graph:
+    desc: Generate topology diagram (mermaid source)
+    cmds:
+      - docker compose config --format json | python ../tools/compose_to_mermaid.py > topology.mmd
+
+  graph-render:
+    desc: Render topology diagram to PNG (downloads mermaid-cli image on first run)
+    cmds:
+      - docker run --rm -v "{{.TASK_DIR}}":/data minlag/mermaid-cli -i /data/topology.mmd -o /data/images/demo-3-deployment.png

@@ -1,0 +1,13 @@
+flowchart LR
+classDef svc fill:#e3f2fd,stroke:#1e88e5,stroke-width:1px;
+classDef net fill:#f1f8e9,stroke:#7cb342,stroke-width:1px,stroke-dasharray: 4 2;
+classDef vol fill:#fff3e0,stroke:#fb8c00,stroke-width:1px;
+  net_demo2_net(("demo2-net")):::net
+  svc_backend["backend<br/>image: ds/demo-2/backend:0.1<br/>build: D:\FAV\1\2\DSA\sem_work\examples\demo-2\backend<br/>net: demo2-net<br/>vol: D:\FAV\1\2\DSA\sem_work\examples\demo-2:/vagrant"]:::svc
+  svc_frontend["frontend<br/>image: ds/demo-2/frontend:0.1<br/>build: D:\FAV\1\2\DSA\sem_work\examples\demo-2\frontend<br/>ports: 8080:80/tcp<br/>env: STARTUP_DELAY=60<br/>net: demo2-net<br/>vol: D:\FAV\1\2\DSA\sem_work\examples\demo-2:/vagrant"]:::svc
+  svc_backend --- net_demo2_net
+  vol_D__FAV_1_2_DSA_sem_work_examples_demo_2[("D:\FAV\1\2\DSA\sem_work\examples\demo-2")]:::vol
+  svc_backend --- vol_D__FAV_1_2_DSA_sem_work_examples_demo_2
+  svc_frontend -- depends_on --> svc___backend_____condition____service_started____required___True__
+  svc_frontend --- net_demo2_net
+  svc_frontend --- vol_D__FAV_1_2_DSA_sem_work_examples_demo_2

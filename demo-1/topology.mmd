@@ -1,0 +1,9 @@
+flowchart LR
+classDef svc fill:#e3f2fd,stroke:#1e88e5,stroke-width:1px;
+classDef net fill:#f1f8e9,stroke:#7cb342,stroke-width:1px,stroke-dasharray: 4 2;
+classDef vol fill:#fff3e0,stroke:#fb8c00,stroke-width:1px;
+  net_demo1_net(("demo1-net")):::net
+  svc_node1["node1<br/>image: ghcr.io/maxotta/kiv-dsa-vagrant-base-docker:latest<br/>net: demo1-net<br/>vol: D:\FAV\1\2\DSA\kiv-dsa-docker\demo-1:/vagrant"]:::svc
+  svc_node1 --- net_demo1_net
+  vol_D__FAV_1_2_DSA_kiv_dsa_docker_demo_1[("D:\FAV\1\2\DSA\kiv-dsa-docker\demo-1")]:::vol
+  svc_node1 --- vol_D__FAV_1_2_DSA_kiv_dsa_docker_demo_1

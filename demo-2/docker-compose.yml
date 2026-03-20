@@ -1,0 +1,37 @@
+services:
+  backend:
+    build: ./backend
+    image: ds/demo-2/backend:0.1
+    container_name: backend
+    hostname: backend
+    networks:
+      demo2-net:
+        ipv4_address: 10.55.2.11
+    volumes:
+      - ./:/vagrant
+    tty: true
+
+  frontend:
+    build: ./frontend
+    image: ds/demo-2/frontend:0.1
+    container_name: frontend
+    hostname: frontend
+    depends_on:
+      - backend
+    environment:
+      STARTUP_DELAY: "60"
+    ports:
+      - "8080:80"
+    networks:
+      demo2-net:
+        ipv4_address: 10.55.2.12
+    volumes:
+      - ./:/vagrant
+    tty: true
+
+networks:
+  demo2-net:
+    name: demo-2-net
+    ipam:
+      config:
+        - subnet: 10.55.2.0/24

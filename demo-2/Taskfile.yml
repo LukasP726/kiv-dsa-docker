@@ -1,0 +1,42 @@
+version: "3"
+
+tasks:
+  start:
+    desc: Build and start the infrastructure
+    cmds:
+      - docker compose up -d --build
+
+  stop:
+    desc: Stop the infrastructure
+    cmds:
+      - docker compose stop
+
+  destroy:
+    desc: Dispose the infrastructure (stop + remove)
+    cmds:
+      - docker compose down -v --remove-orphans
+
+  status:
+    desc: Show status
+    cmds:
+      - docker compose ps
+
+  shell-backend:
+    desc: Open shell in backend
+    cmds:
+      - docker compose exec backend bash
+
+  shell-frontend:
+    desc: Open shell in frontend
+    cmds:
+      - docker compose exec frontend bash
+
+  graph:
+    desc: Generate topology diagram (mermaid source)
+    cmds:
+      - docker compose config --format json | python ../tools/compose_to_mermaid.py > topology.mmd
+
+  graph-render:
+    desc: Render topology diagram to PNG (downloads mermaid-cli image on first run)
+    cmds:
+      - docker run --rm -v "{{.TASK_DIR}}":/data minlag/mermaid-cli -i /data/topology.mmd -o /data/images/demo-2-deployment.png

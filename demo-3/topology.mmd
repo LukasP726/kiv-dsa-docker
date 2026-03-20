@@ -1,0 +1,25 @@
+flowchart LR
+classDef svc fill:#e3f2fd,stroke:#1e88e5,stroke-width:1px;
+classDef net fill:#f1f8e9,stroke:#7cb342,stroke-width:1px,stroke-dasharray: 4 2;
+classDef vol fill:#fff3e0,stroke:#fb8c00,stroke-width:1px;
+  net_demo3_net(("demo3-net")):::net
+  svc_backend_1["backend-1<br/>image: ds/demo-3/backend:0.1<br/>build: D:\FAV\1\2\DSA\kiv-dsa-docker\demo-3\backend<br/>net: demo3-net<br/>vol: D:\FAV\1\2\DSA\kiv-dsa-docker\demo-3:/vagrant"]:::svc
+  svc_backend_2["backend-2<br/>image: ds/demo-3/backend:0.1<br/>build: D:\FAV\1\2\DSA\kiv-dsa-docker\demo-3\backend<br/>net: demo3-net<br/>vol: D:\FAV\1\2\DSA\kiv-dsa-docker\demo-3:/vagrant"]:::svc
+  svc_backend_3["backend-3<br/>image: ds/demo-3/backend:0.1<br/>build: D:\FAV\1\2\DSA\kiv-dsa-docker\demo-3\backend<br/>net: demo3-net<br/>vol: D:\FAV\1\2\DSA\kiv-dsa-docker\demo-3:/vagrant"]:::svc
+  svc_backend_4["backend-4<br/>image: ds/demo-3/backend:0.1<br/>build: D:\FAV\1\2\DSA\kiv-dsa-docker\demo-3\backend<br/>net: demo3-net<br/>vol: D:\FAV\1\2\DSA\kiv-dsa-docker\demo-3:/vagrant"]:::svc
+  svc_backend_5["backend-5<br/>image: ds/demo-3/backend:0.1<br/>build: D:\FAV\1\2\DSA\kiv-dsa-docker\demo-3\backend<br/>net: demo3-net<br/>vol: D:\FAV\1\2\DSA\kiv-dsa-docker\demo-3:/vagrant"]:::svc
+  svc_frontend_lb["frontend-lb<br/>image: ds/demo-3/frontend:0.1<br/>build: D:\FAV\1\2\DSA\kiv-dsa-docker\demo-3\frontend<br/>ports: 8080:80/tcp<br/>env: STARTUP_DELAY=60<br/>net: demo3-net<br/>vol: D:\FAV\1\2\DSA\kiv-dsa-docker\demo-3:/vagrant"]:::svc
+  svc_backend_1 --- net_demo3_net
+  vol_D__FAV_1_2_DSA_kiv_dsa_docker_demo_3[("D:\FAV\1\2\DSA\kiv-dsa-docker\demo-3")]:::vol
+  svc_backend_1 --- vol_D__FAV_1_2_DSA_kiv_dsa_docker_demo_3
+  svc_backend_2 --- net_demo3_net
+  svc_backend_2 --- vol_D__FAV_1_2_DSA_kiv_dsa_docker_demo_3
+  svc_backend_3 --- net_demo3_net
+  svc_backend_3 --- vol_D__FAV_1_2_DSA_kiv_dsa_docker_demo_3
+  svc_backend_4 --- net_demo3_net
+  svc_backend_4 --- vol_D__FAV_1_2_DSA_kiv_dsa_docker_demo_3
+  svc_backend_5 --- net_demo3_net
+  svc_backend_5 --- vol_D__FAV_1_2_DSA_kiv_dsa_docker_demo_3
+  svc_frontend_lb -- depends_on --> svc___backend_1_____condition____service_started____required___True____backend_2_____condition____service_started____required___True____backend_3_____condition____service_started____required___True____backend_4_____condition____service_started____required___True____backend_5_____condition____service_started____required___True__
+  svc_frontend_lb --- net_demo3_net
+  svc_frontend_lb --- vol_D__FAV_1_2_DSA_kiv_dsa_docker_demo_3

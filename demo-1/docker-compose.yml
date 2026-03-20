@@ -1,0 +1,17 @@
+services:
+  node1:
+    image: ghcr.io/maxotta/kiv-dsa-vagrant-base-docker:latest
+    container_name: node1
+    hostname: node1
+    networks:
+      demo1-net:
+        ipv4_address: 10.55.1.11
+    volumes:
+      - ./:/vagrant
+    tty: true
+networks:
+  demo1-net:
+    name: demo-1-net
+    ipam:
+      config:
+        - subnet: 10.55.1.0/24
