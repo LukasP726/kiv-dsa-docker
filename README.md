@@ -1,50 +1,50 @@
 # KIV-DSA Docker Demos
 
-Tento repozitář obsahuje tři postupně náročnější demonstrační projekty, které ukazují práci s kontejnery, Docker Compose a jednoduchou automatizaci generování konfigurací. Každé demo je samostatné a má vlastní `README.md` s návodem na spuštění.
+This repository contains three progressively more advanced demo projects that showcase containers, Docker Compose, and simple config generation automation. Each demo is self‑contained and has its own `README.md` with run instructions.
 
-## Struktura repozitáře
+## Repository Structure
 
 - `demo-1`  
-  Úvod do Docker Compose, spuštění jednoho uzlu/kontejneru a základní správa životního cyklu.
+  Intro to Docker Compose, a single node/container, and basic lifecycle management.
 - `demo-2`  
-  Dvě služby (backend + frontend), build vlastních image a mapování portů, přístup k aplikaci z hosta.
+  Two services (backend + frontend), building custom images, port mapping, and host access.
 - `demo-3`  
-  Generování konfigurací před startem, škálování backendů a load‑balancing přes NGINX.
+  Pre‑startup config generation, backend scaling, and NGINX load balancing.
 - `tools`  
-  Pomocné Python skripty pro generování diagramů a assets (`compose_to_mermaid.py`, `generate_demo3_assets.py`).
+  Helper Python scripts for diagram and asset generation (`compose_to_mermaid.py`, `generate_demo3_assets.py`).
 
-## Požadované nástroje a verze
+## Required Tools and Versions
 
-Repozitář používá moderní Docker Compose v2 (příkaz `docker compose`) a Taskfile v3. Konkrétní verze nástrojů nejsou v repozitáři explicitně zafixované, ale minimálně je potřeba:
+This repo uses Docker Compose v2 (`docker compose`) and Taskfile v3. Exact versions are not pinned, but at minimum you need:
 
 - **Docker Engine**: `20.10+`  
-  (kvůli pluginu Docker Compose v2)
+  (for the Docker Compose v2 plugin)
 - **Docker Compose (plugin)**: `2.0+`  
-  (příkaz `docker compose`, nikoli `docker-compose`)
+  (`docker compose`, not `docker-compose`)
 - **Taskfile (task)**: `v3`  
-  (soubor `Taskfile.yml` má `version: "3"`)
+  (`Taskfile.yml` uses `version: "3"`)
 - **Python**: `3.8+`  
-  (pro `task graph` a `task prepare`, skripty v `tools/`)
+  (for `task graph` and `task prepare`, scripts in `tools/`)
 
-Poznámka: Base image použitá v demo kontejnerech je `ghcr.io/maxotta/kiv-dsa-vagrant-base-docker:latest`. Pokud se tag `latest` změní, může to ovlivnit chování dem (záměrně není pinováno na konkrétní verzi).
+Note: The base image used in the demo containers is `ghcr.io/maxotta/kiv-dsa-vagrant-base-docker:latest`. If the `latest` tag changes, demo behavior may change as well (intentionally not pinned to a specific version).
 
-## Instalace
+## Installation
 
-1. Nainstalujte Docker Desktop (Windows/macOS) nebo Docker Engine (Linux).  
+1. Install Docker Desktop (Windows/macOS) or Docker Engine (Linux).  
    [Docker Get Started](https://docs.docker.com/get-started/get-docker/)  
    [Docker Engine Install](https://docs.docker.com/engine/install/)
-2. Ověřte, že funguje `docker compose version`.
-3. Nainstalujte Taskfile (`task`).  
+2. Verify that `docker compose version` works.
+3. Install Taskfile (`task`).  
    [Taskfile Install](https://taskfile.dev/docs/installation/)
-4. Ujistěte se, že máte Python 3 (`python --version` nebo `python3 --version`).
+4. Make sure Python 3 is available (`python --version` or `python3 --version`).
 
-## Spuštění dem
+## Running the Demos
 
-Každé demo má vlastní návod. Příklad:
+Each demo has its own instructions. Example:
 
-- `demo-?`: `task start` (před startem třetího tasku proběhne `task prepare`)
+- `demo-?`: `task start` (task 3 runs `task prepare` before start)
 
-Další informace a obrázky najdete v jednotlivých `README.md`:
+More details and images are in the demo READMEs:
 
 - `demo-?/README.md`
 

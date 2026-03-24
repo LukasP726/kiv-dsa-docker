@@ -34,7 +34,6 @@ With **Docker Compose** you can easily manage the whole infrastructure. The basi
 * `task stop` - stop the infrastructure 
 * `task destroy` - dispose the infrastructure (and stop if running)
 * `task graph` - generate the topology diagram source (`topology.mmd`) from the current `docker-compose.yml`
-* `task graph-render` - render the diagram to `images/demo-3-deployment.png` (downloads a renderer image on first run)
 
 Note: `graph` uses Python. If the `python` command is missing on your system, install Python 3 and rerun (or adjust the task to use `python3`).
 
