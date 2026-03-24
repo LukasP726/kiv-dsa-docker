@@ -31,7 +31,3 @@ tasks:
     cmds:
       - docker compose config --format json | python ../tools/compose_to_mermaid.py > topology.mmd
 
-  graph-render:
-    desc: Render topology diagram to PNG (downloads mermaid-cli image on first run)
-    cmds:
-      - docker run --rm -v "{{.TASK_DIR}}":/data minlag/mermaid-cli -i /data/topology.mmd -o /data/images/demo-1-deployment.png
