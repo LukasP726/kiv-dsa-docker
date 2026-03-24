@@ -1,4 +1,4 @@
-# ![DS Logo](../images/icon-32-ds.png)  KIV-DSA Docker Demos
+# ![DS Logo](images/icon-32-ds.png)  KIV-DSA Docker Demos
 
 This repository contains three progressively more advanced demo projects that showcase containers, Docker Compose, and simple config generation automation. Each demo is self‑contained and has its own `README.md` with run instructions.
 
@@ -26,7 +26,7 @@ This repo uses Docker Compose v2 (`docker compose`) and Taskfile v3. Exact versi
 - **Python**: `3.8+`  
   (for `task graph` and `task prepare`, scripts in `tools/`)
 - **Mermaid Preview plugin for VSCode**: `2.1.2+`  
-# ![mermaid Logo](../images/icon-mermaid-ds.png) 
+# ![mermaid Logo](images/icon-mermaid-ds.png) 
 
 
 Note: The base image used in the demo containers is `ghcr.io/maxotta/kiv-dsa-vagrant-base-docker:latest`. If the `latest` tag changes, demo behavior may change as well (intentionally not pinned to a specific version).
